@@ -1,6 +1,14 @@
-﻿body {
-    padding-top: 50px;
+﻿html {
+    height: 100%;
+    background: #fd027e;
+}
+body {
+    padding-top: 20px;
     padding-bottom: 20px;
+    height: inherit;
+    background: #fd027e; /* For browsers that do not support gradients */
+    background: linear-gradient(to bottom right, #fd027e, #3c5bf4) no-repeat; /* Standard syntax (must be last) */
+    color: #000;
 }
 
 /* Wrapping element */
@@ -8,6 +16,7 @@
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    height: 100%;
 }
 
 /* Carousel */
@@ -32,4 +41,11 @@
     .carousel-caption {
         display: none;
     }
+}
+form {
+    background: #FFF;
+}
+.title {
+    color: #FFF;
+    text-align: center;
 }
