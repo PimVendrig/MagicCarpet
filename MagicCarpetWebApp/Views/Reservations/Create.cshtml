@@ -10,11 +10,17 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="ConcertId" class="control-label">Concert</label>
-                <select asp-for="ConcertId" class ="form-control" asp-items="ViewBag.ConcertId"></select>
+                <select asp-for="ConcertId" class="form-control chosen-select" asp-items="ViewBag.ConcertId">
+                    <option value="">Select your concert</option>
+                </select>
+                <span asp-validation-for="ConcertId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Destination" class="control-label"></label>
-                <select asp-for="Destination" class ="form-control" asp-items="ViewBag.Stations"></select>
+                <select asp-for="Destination" class="form-control chosen-select" asp-items="ViewBag.Stations">
+                    <option value="">Select your station</option>
+                </select>
+                <span asp-validation-for="Destination" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Amount" class="control-label">Total persons traveling</label>
