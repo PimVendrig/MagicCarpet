@@ -31,13 +31,13 @@ namespace MagicCarpetWebApp.Services
             return stations.Data;
         }
 
-        public PriceResult GetPrice(string fromStation, string toStation, int amount)
+        public PriceResult2 GetPrice(string fromStation, string toStation, int amount)
         {
             var request = new RestRequest("/reisinfo/api/v2/price");
             request.AddQueryParameter("fromStation", fromStation);
             request.AddQueryParameter("toStation", toStation);
             //We need the price, so just a random date in the future (for now)
-            request.AddQueryParameter("plannedFromTime", "2018-09-27T09:32:00+0200");
+            request.AddQueryParameter("plannedFromTime", "2018-06-20T14:28:00+02:00");
             request.AddQueryParameter("travelClass", "2");
             request.AddQueryParameter("travelType", "single");
             request.AddQueryParameter("adults", amount.ToString());
@@ -47,10 +47,10 @@ namespace MagicCarpetWebApp.Services
             var price = Client.Get<PriceResult>(request);
             if (price.IsSuccessful)
             {
-                return price.Data;
+                return price.Data.payload;
             }
             //Getting some errors here. Investigate later
-            return new PriceResult { totalPriceInCents = 955 * amount };//Fake ticketprice to Euro 9,55
+            return new PriceResult2 { totalPriceInCents = 955 * amount };//Fake ticketprice to Euro 9,55
         }
 
         public bool BuyDemo()

@@ -7,6 +7,14 @@ namespace MagicCarpetWebApp.Models
 {
     public class PriceResult
     {
+
+        public PriceResult2 payload { get; set; }
+    }
+
+    public class PriceResult2
+    {
+
         public int totalPriceInCents { get; set; }
     }
+
 }
