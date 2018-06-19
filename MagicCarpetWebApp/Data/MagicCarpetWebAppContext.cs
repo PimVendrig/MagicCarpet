@@ -13,6 +13,7 @@ namespace MagicCarpetWebApp.Models
         {
         }
 
-        public DbSet<MagicCarpetWebApp.Models.ConcertInfo> ConcertInfo { get; set; }
+        public DbSet<MagicCarpetWebApp.Models.ConcertInfo> ConcertInfoes { get; set; }
+        public DbSet<ConcertLocation> ConcertLocations { get; set; }
     }
 }

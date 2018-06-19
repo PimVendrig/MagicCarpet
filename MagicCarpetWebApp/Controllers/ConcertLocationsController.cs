@@ -9,23 +9,22 @@ using MagicCarpetWebApp.Models;
 
 namespace MagicCarpetWebApp.Controllers
 {
-    public class ConcertInfoesController : Controller
+    public class ConcertLocationsController : Controller
     {
         private readonly MagicCarpetWebAppContext _context;
 
-        public ConcertInfoesController(MagicCarpetWebAppContext context)
+        public ConcertLocationsController(MagicCarpetWebAppContext context)
         {
             _context = context;
         }
 
-        // GET: ConcertInfoes
+        // GET: ConcertLocations
         public async Task<IActionResult> Index()
         {
-            var magicCarpetWebAppContext = _context.ConcertInfoes.Include(c => c.Location);
-            return View(await magicCarpetWebAppContext.ToListAsync());
+            return View(await _context.ConcertLocations.ToListAsync());
         }
 
-        // GET: ConcertInfoes/Details/5
+        // GET: ConcertLocations/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null)
@@ -33,43 +32,40 @@ namespace MagicCarpetWebApp.Controllers
                 return NotFound();
             }
 
-            var concertInfo = await _context.ConcertInfoes
-                .Include(c => c.Location)
+            var concertLocation = await _context.ConcertLocations
                 .SingleOrDefaultAsync(m => m.Id == id);
-            if (concertInfo == null)
+            if (concertLocation == null)
             {
                 return NotFound();
             }
 
-            return View(concertInfo);
+            return View(concertLocation);
         }
 
-        // GET: ConcertInfoes/Create
+        // GET: ConcertLocations/Create
         public IActionResult Create()
         {
-            ViewData["LocationId"] = new SelectList(_context.ConcertLocations, "Id", "Name");
             return View();
         }
 
-        // POST: ConcertInfoes/Create
+        // POST: ConcertLocations/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Date,LocationId")] ConcertInfo concertInfo)
+        public async Task<IActionResult> Create([Bind("Id,Name,Station")] ConcertLocation concertLocation)
         {
             if (ModelState.IsValid)
             {
-                concertInfo.Id = Guid.NewGuid();
-                _context.Add(concertInfo);
+                concertLocation.Id = Guid.NewGuid();
+                _context.Add(concertLocation);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["LocationId"] = new SelectList(_context.ConcertLocations, "Id", "Name", concertInfo.LocationId);
-            return View(concertInfo);
+            return View(concertLocation);
         }
 
-        // GET: ConcertInfoes/Edit/5
+        // GET: ConcertLocations/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
@@ -77,23 +73,22 @@ namespace MagicCarpetWebApp.Controllers
                 return NotFound();
             }
 
-            var concertInfo = await _context.ConcertInfoes.SingleOrDefaultAsync(m => m.Id == id);
-            if (concertInfo == null)
+            var concertLocation = await _context.ConcertLocations.SingleOrDefaultAsync(m => m.Id == id);
+            if (concertLocation == null)
             {
                 return NotFound();
             }
-            ViewData["LocationId"] = new SelectList(_context.ConcertLocations, "Id", "Name", concertInfo.LocationId);
-            return View(concertInfo);
+            return View(concertLocation);
         }
 
-        // POST: ConcertInfoes/Edit/5
+        // POST: ConcertLocations/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,Date,LocationId")] ConcertInfo concertInfo)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,Station")] ConcertLocation concertLocation)
         {
-            if (id != concertInfo.Id)
+            if (id != concertLocation.Id)
             {
                 return NotFound();
             }
@@ -102,12 +97,12 @@ namespace MagicCarpetWebApp.Controllers
             {
                 try
                 {
-                    _context.Update(concertInfo);
+                    _context.Update(concertLocation);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ConcertInfoExists(concertInfo.Id))
+                    if (!ConcertLocationExists(concertLocation.Id))
                     {
                         return NotFound();
                     }
@@ -118,11 +113,10 @@ namespace MagicCarpetWebApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["LocationId"] = new SelectList(_context.ConcertLocations, "Id", "Name", concertInfo.LocationId);
-            return View(concertInfo);
+            return View(concertLocation);
         }
 
-        // GET: ConcertInfoes/Delete/5
+        // GET: ConcertLocations/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null)
@@ -130,31 +124,30 @@ namespace MagicCarpetWebApp.Controllers
                 return NotFound();
             }
 
-            var concertInfo = await _context.ConcertInfoes
-                .Include(c => c.Location)
+            var concertLocation = await _context.ConcertLocations
                 .SingleOrDefaultAsync(m => m.Id == id);
-            if (concertInfo == null)
+            if (concertLocation == null)
             {
                 return NotFound();
             }
 
-            return View(concertInfo);
+            return View(concertLocation);
         }
 
-        // POST: ConcertInfoes/Delete/5
+        // POST: ConcertLocations/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var concertInfo = await _context.ConcertInfoes.SingleOrDefaultAsync(m => m.Id == id);
-            _context.ConcertInfoes.Remove(concertInfo);
+            var concertLocation = await _context.ConcertLocations.SingleOrDefaultAsync(m => m.Id == id);
+            _context.ConcertLocations.Remove(concertLocation);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ConcertInfoExists(Guid id)
+        private bool ConcertLocationExists(Guid id)
         {
-            return _context.ConcertInfoes.Any(e => e.Id == id);
+            return _context.ConcertLocations.Any(e => e.Id == id);
         }
     }
 }

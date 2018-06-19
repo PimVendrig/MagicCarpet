@@ -1,4 +1,4 @@
-﻿@model MagicCarpetWebApp.Models.ConcertInfo
+﻿@model MagicCarpetWebApp.Models.ConcertLocation
 
 @{
     ViewData["Title"] = "Delete";
@@ -8,7 +8,7 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>ConcertInfo</h4>
+    <h4>ConcertLocation</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -18,16 +18,10 @@
             @Html.DisplayFor(model => model.Name)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Date)
+            @Html.DisplayNameFor(model => model.Station)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Date)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Location)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Location.Name)
+            @Html.DisplayFor(model => model.Station)
         </dd>
     </dl>
     

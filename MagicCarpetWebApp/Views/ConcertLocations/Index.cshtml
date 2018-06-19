@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MagicCarpetWebApp.Models.ConcertInfo>
+﻿@model IEnumerable<MagicCarpetWebApp.Models.ConcertLocation>
 
 @{
     ViewData["Title"] = "Index";
@@ -16,11 +16,8 @@
                     @Html.DisplayNameFor(model => model.Name)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Date)
+                    @Html.DisplayNameFor(model => model.Station)
                 </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Location)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -31,10 +28,7 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Location.Name)
+                @Html.DisplayFor(modelItem => item.Station)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

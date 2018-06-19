@@ -11,9 +11,10 @@ using System;
 namespace MagicCarpetWebApp.Migrations
 {
     [DbContext(typeof(MagicCarpetWebAppContext))]
-    partial class MagicCarpetWebAppContextModelSnapshot : ModelSnapshot
+    [Migration("20180619043648_ConcertLocations")]
+    partial class ConcertLocations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,7 +28,7 @@ namespace MagicCarpetWebApp.Migrations
 
                     b.Property<DateTime>("Date");
 
-                    b.Property<Guid>("LocationId");
+                    b.Property<Guid?>("LocationId");
 
                     b.Property<string>("Name");
 
@@ -56,8 +57,7 @@ namespace MagicCarpetWebApp.Migrations
                 {
                     b.HasOne("MagicCarpetWebApp.Models.ConcertLocation", "Location")
                         .WithMany()
-                        .HasForeignKey("LocationId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("LocationId");
                 });
 #pragma warning restore 612, 618
         }
