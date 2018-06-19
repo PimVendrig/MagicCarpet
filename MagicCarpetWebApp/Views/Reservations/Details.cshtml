@@ -46,6 +46,18 @@
         <dd>
             @Html.DisplayFor(model => model.Concert.Name)
         </dd>
+        <dt>
+            CALCULATED<br />Still needed seats
+        </dt>
+        <dd>
+            @ViewData["StillNeededSeats"]
+        </dd>
+        <dt>
+            CALCULATED<br />Price
+        </dt>
+        <dd>
+            @ViewData["Price"]
+        </dd>
     </dl>
 </div>
 <div>

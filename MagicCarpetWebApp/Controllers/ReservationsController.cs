@@ -13,12 +13,14 @@ namespace MagicCarpetWebApp.Controllers
     public class ReservationsController : Controller
     {
         private readonly MagicCarpetWebAppContext _context;
-        private readonly NsService _nsService;
+        private readonly INsService _nsService;
+        private readonly CalculateController _calculateController;
 
-        public ReservationsController(MagicCarpetWebAppContext context)
+        public ReservationsController(MagicCarpetWebAppContext context, INsService nsService, CalculateController calculateController)
         {
             _context = context;
-            _nsService = new NsService();
+            _nsService = nsService;
+            _calculateController = calculateController;
         }
 
         // GET: Reservations
@@ -43,6 +45,10 @@ namespace MagicCarpetWebApp.Controllers
             {
                 return NotFound();
             }
+
+            //Trying to demonstrate the calculation method
+            ViewData["StillNeededSeats"] = _calculateController.GetStillNeededSeats(reservation.ConcertId, reservation.Destination);
+            ViewData["Price"] = _calculateController.GetPrice(reservation.ConcertId, reservation.Destination, reservation.Amount);
 
             return View(reservation);
         }

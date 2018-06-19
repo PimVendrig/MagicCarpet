@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MagicCarpetWebApp.Controllers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using MagicCarpetWebApp.Models;
+using MagicCarpetWebApp.Services;
 
 namespace MagicCarpetWebApp
 {
@@ -27,6 +29,8 @@ namespace MagicCarpetWebApp
 
             services.AddDbContext<MagicCarpetWebAppContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("MagicCarpetWebAppContext")));
+            services.AddSingleton<INsService, NsService>();
+            services.AddTransient<CalculateController, CalculateController>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
