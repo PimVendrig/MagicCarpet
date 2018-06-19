@@ -76,12 +76,32 @@ namespace MagicCarpetWebApp.Controllers
                 reservation.Id = Guid.NewGuid();
                 _context.Add(reservation);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Step2), new {id = reservation.Id} );
             }
             ViewData["ConcertId"] = new SelectList(_context.ConcertInfoes, "Id", "Name", reservation.ConcertId);
             ViewData["Stations"] = new SelectList(_nsService.GetStations().payload.Select(s => new { s.code, s.namen.lang }), "code", "lang", reservation.Destination);
             return View(reservation);
         }
+
+
+        // GET: Reservations/Edit/5
+        public async Task<IActionResult> Step2(Guid? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var reservation = await _context.Reservations.SingleOrDefaultAsync(m => m.Id == id);
+            if (reservation == null)
+            {
+                return NotFound();
+            }
+            ViewData["ConcertId"] = new SelectList(_context.ConcertInfoes, "Id", "Name", reservation.ConcertId);
+            ViewData["Stations"] = new SelectList(_nsService.GetStations().payload.Select(s => new { s.code, s.namen.lang }), "code", "lang", reservation.Destination);
+            return View(reservation);
+        }
+
 
         // GET: Reservations/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
