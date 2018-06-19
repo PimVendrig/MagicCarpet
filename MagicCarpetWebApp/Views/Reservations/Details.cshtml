@@ -47,16 +47,28 @@
             @Html.DisplayFor(model => model.Concert.Name)
         </dd>
         <dt>
-            CALCULATED<br />Still needed seats
+            More:
+        </dt>
+        <dd>
+            Data:
+        </dd>
+        <dt>
+            Still needed seats
         </dt>
         <dd>
             @ViewData["StillNeededSeats"]
         </dd>
         <dt>
-            CALCULATED<br />Price
+            Price
         </dt>
         <dd>
             @ViewData["Price"]
+        </dd>
+        <dt>
+            Qr code
+        </dt>
+        <dd>
+            <img src="@ViewData["QrUrl"]" alt="Qr code"/>
         </dd>
     </dl>
 </div>

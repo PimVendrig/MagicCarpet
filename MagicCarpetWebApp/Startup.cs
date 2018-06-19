@@ -30,6 +30,7 @@ namespace MagicCarpetWebApp
             services.AddDbContext<MagicCarpetWebAppContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("MagicCarpetWebAppContext")));
             services.AddSingleton<INsService, NsService>();
+            services.AddSingleton<IQrService, QrService>();
             services.AddTransient<CalculateController, CalculateController>();
         }
 
