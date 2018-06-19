@@ -14,6 +14,9 @@
                     <option value="">Select your concert</option>
                 </select>
                 <span asp-validation-for="ConcertId" class="text-danger"></span>
+                <div id="ImageDiv" style="display:none;">
+                    <img id="ImageImg" src="" alt =""/>
+                </div>
             </div>
             <div class="form-group">
                 <label asp-for="Destination" class="control-label"></label>
@@ -70,6 +73,36 @@
   
             });         
         });
+
+        $("#ConcertId").change(function () {
+            var concertId = $("#ConcertId option:selected").val();
+            $.ajax({  
+                type: "GET",  
+                url: "api/Calculate/GetImageUrl?concertId=" + concertId,  
+                contentType: "application/json; charset=utf-8",  
+                dataType: "json",  
+                success: function (data) {
+                    //$("#seats_still_needed").text(data);
+                    //$("#extra_info").show();
+                    if (data === undefined) {
+                        $("#ImageDiv").hide();
+                    }
+                    else {
+                        $("#ImageDiv").show();
+                        jQuery("#ImageImg").attr("src", "/images/" + data);
+                    }
+                }, //End of AJAX Success function  
+  
+                failure: function (data) {  
+                    alert(data.responseText);  
+                }, //End of AJAX failure function  
+                error: function (data) {  
+                    alert(data.responseText);  
+                } //End of AJAX error function  
+  
+            });         
+        });
+
     });
 </script>
 

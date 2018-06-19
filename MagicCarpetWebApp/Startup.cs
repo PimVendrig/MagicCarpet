@@ -91,6 +91,21 @@ namespace MagicCarpetWebApp
                     context.SaveChanges();
                 }
 
+                if (context.ConcertInfoes.All(c => c.Image == null))
+                {
+                    foreach (var concert in context.ConcertInfoes)
+                    {
+                        if (concert.Name.StartsWith("Nicki"))
+                            concert.Image = "Nicki.jpg";
+                        else if (concert.Name.StartsWith("Justin"))
+                            concert.Image = "Justin.jpg";
+                        else if (concert.Name.StartsWith("Snow"))
+                            concert.Image = "Snow.jpg";
+                    }
+
+                    context.SaveChanges();
+                }
+
             }
         }
     }

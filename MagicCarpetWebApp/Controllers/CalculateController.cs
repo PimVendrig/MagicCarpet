@@ -24,6 +24,13 @@ namespace MagicCarpetWebApp.Controllers
             _nsService = nsService;
         }
 
+        [Route("GetImageUrl")]
+        [HttpGet]
+        public string GetImageUrl(Guid concertId)
+        {
+            return _context.ConcertInfoes.SingleOrDefault(c => c.Id == concertId)?.Image;
+        }
+
         [Route("GetStillNeededSeats")]
         [HttpGet]
         public int GetStillNeededSeats(Guid concertId, string destination)

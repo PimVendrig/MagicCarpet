@@ -11,6 +11,7 @@ namespace MagicCarpetWebApp.Models
         public Guid Id { get; set; }
         public string Name { get; set; }
         public DateTime Date { get; set; }
+        public string Image { get; set; }
         public Guid LocationId { get; set; }
         [ForeignKey("LocationId")]
         public ConcertLocation Location { get; set; }
