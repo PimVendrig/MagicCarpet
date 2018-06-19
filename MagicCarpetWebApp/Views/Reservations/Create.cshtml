@@ -21,29 +21,52 @@
                 <input asp-for="Amount" class="form-control" />
                 <span asp-validation-for="Amount" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="EmailAddress" class="control-label">Email</label>
-                <input asp-for="EmailAddress" class="form-control" />
-                <span asp-validation-for="EmailAddress" class="text-danger"></span>
+            <div class="form-group" style="text-align: center;">
+                <input type="button" value="Check" class="btn btn-default" id="get_extra_info"/>
             </div>
-            <div class="form-group">
-                <div class="checkbox">
-                    <label>
-                        <input asp-for="Agrees" /> @Html.DisplayNameFor(model => model.Agrees)
-                    </label>
+            
+            <div id="extra_info">
+                <hr class="nice_bar"/>
+                <div style="text-align: center;">
+                    <p>Amount of people needed to make this happen</p>
+                    <strong style="font-size: 20px; margin: 5px 0;" id="seats_still_needed"></strong>
+                </div><br/>
+                <div class="form-group" style="text-align: center;">
+                    <input type="submit" value="I'm in" class="btn btn-default"/>
                 </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="PaymentDetails" class="control-label"></label>
-                <input asp-for="PaymentDetails" class="form-control" />
-                <span asp-validation-for="PaymentDetails" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </form>
     </div>
 </div>
+<script type="text/javascript" src="lib/jquery/dist/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {  
+        $("#get_extra_info").click(function () {
+            var concertId = $("#ConcertId option:selected").val();
+            var destination = $("#Destination option:selected").val();
+            $.ajax({  
+                type: "GET",  
+                url: "api/Calculate/GetStillNeededSeats?concertId=" + concertId + "&destination=" +  destination,  
+                contentType: "application/json; charset=utf-8",  
+                dataType: "json",  
+                success: function (data) {
+                    $("#seats_still_needed").text(data);
+                    $("#extra_info").show();
+                    console.log(data);  
+                }, //End of AJAX Success function  
+  
+                failure: function (data) {  
+                    alert(data.responseText);  
+                }, //End of AJAX failure function  
+                error: function (data) {  
+                    alert(data.responseText);  
+                } //End of AJAX error function  
+  
+            });         
+        });
+    });
+</script>
+
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

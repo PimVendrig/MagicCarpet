@@ -24,7 +24,8 @@ namespace MagicCarpetWebApp.Controllers
             _nsService = nsService;
         }
 
-
+        [Route("GetStillNeededSeats")]
+        [HttpGet]
         public int GetStillNeededSeats(Guid concertId, string destination)
         {
             //For now it is implemented simple: No aggregation of routes, one train from a concert to a destionation (Don't bundle Zwolle and Groningen for now)
