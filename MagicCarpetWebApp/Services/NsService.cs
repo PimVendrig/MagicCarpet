@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MagicCarpetWebApp.Models;
+using Microsoft.CodeAnalysis;
 using RestSharp;
 
 namespace MagicCarpetWebApp.Services
@@ -52,7 +53,16 @@ namespace MagicCarpetWebApp.Services
             return new PriceResult { totalPriceInCents = 955 * amount };//Fake ticketprice to Euro 9,55
         }
 
+        public bool BuyDemo()
+        {
+            var request = new RestRequest("tickets/api/v1/buy", Method.POST);
 
+            request.AddParameter("application/json", "{\r\n\"bookerEmail\": \"sjoerd.smink@ns.nl\",\r\n\"serviceNewsletter\": false,\r\n\"offerNewsletter\": true,\r\n\"surveyNewsletter\": false,\r\n\"bank\": \"INGBNL2A\",\r\n\"expectedPrice\": 725,\r\n\"uuid\": \"1234\",\r\n\"products\": [{\r\n\"productName\": \"enkele-reis\",\r\n\"travelDate\": \"2018-06-20\",\r\n\"fromStation\": \"ed\",\r\n\"toStation\": \"amf\",\r\n\"route\": 92,\r\n\"travelClass\": 2,\r\n\"travelers\": [{\"initials\": \"SK\", \"lastName\": \"Smink\", \"email\": \"sjoerd.smink@ns.nl\", \"birthDate\": \"1988-10-30\" }]\r\n}]\r\n}", ParameterType.RequestBody);
+            DecorateRequest(request);
+
+            var response = Client.Post(request);
+            return response.IsSuccessful;
+        }
 
 
     }

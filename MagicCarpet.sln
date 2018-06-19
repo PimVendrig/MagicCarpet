@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2026
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagicCarpetWebApp", "MagicCarpetWebApp\MagicCarpetWebApp.csproj", "{5CDCF151-39CC-433B-852D-70014442C0CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MagicCarpetWebApp", "MagicCarpetWebApp\MagicCarpetWebApp.csproj", "{5CDCF151-39CC-433B-852D-70014442C0CB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagicCarpetWebAppTest", "MagicCarpetWebAppTest\MagicCarpetWebAppTest.csproj", "{E85B9551-659B-4849-9384-516766B6C54E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{5CDCF151-39CC-433B-852D-70014442C0CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5CDCF151-39CC-433B-852D-70014442C0CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5CDCF151-39CC-433B-852D-70014442C0CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E85B9551-659B-4849-9384-516766B6C54E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E85B9551-659B-4849-9384-516766B6C54E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E85B9551-659B-4849-9384-516766B6C54E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E85B9551-659B-4849-9384-516766B6C54E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
