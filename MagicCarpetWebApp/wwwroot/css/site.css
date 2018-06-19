@@ -1,11 +1,11 @@
 ﻿html {
     height: 100%;
     background: #fd027e;
+    margin: 0;
+    padding: 0;
 }
 body {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    height: inherit;
+    padding: 5px;
     background: #fd027e; /* For browsers that do not support gradients */
     background: linear-gradient(to bottom right, #fd027e, #3c5bf4) no-repeat; /* Standard syntax (must be last) */
     color: #000;
@@ -14,8 +14,8 @@ body {
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
     height: 100%;
 }
 
@@ -44,6 +44,7 @@ body {
 }
 form {
     background: #FFF;
+    padding: 5px;
 }
 .title {
     color: #FFF;
