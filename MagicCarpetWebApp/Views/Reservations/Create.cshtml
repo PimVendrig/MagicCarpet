@@ -4,16 +4,12 @@
     ViewData["Title"] = "Create";
 }
 
-<h2>Create</h2>
-
-<h4>Reservation</h4>
-<hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-12">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="ConcertId" class="control-label"></label>
+                <label asp-for="ConcertId" class="control-label">Concert</label>
                 <select asp-for="ConcertId" class ="form-control" asp-items="ViewBag.ConcertId"></select>
             </div>
             <div class="form-group">
@@ -21,12 +17,12 @@
                 <select asp-for="Destination" class ="form-control" asp-items="ViewBag.Stations"></select>
             </div>
             <div class="form-group">
-                <label asp-for="Amount" class="control-label"></label>
+                <label asp-for="Amount" class="control-label">Total persons traveling</label>
                 <input asp-for="Amount" class="form-control" />
                 <span asp-validation-for="Amount" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EmailAddress" class="control-label"></label>
+                <label asp-for="EmailAddress" class="control-label">Email</label>
                 <input asp-for="EmailAddress" class="form-control" />
                 <span asp-validation-for="EmailAddress" class="text-danger"></span>
             </div>
@@ -48,11 +44,6 @@
         </form>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
