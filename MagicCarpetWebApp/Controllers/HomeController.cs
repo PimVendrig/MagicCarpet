@@ -35,6 +35,7 @@ namespace MagicCarpetWebApp.Controllers
 
             var client = new RestClient("https://api-access.ns-mlab.nl/");
             var restRequest = new RestRequest("/reisinfo/api/v2/stations");
+            restRequest.AddHeader("x-api-key", "hackatrainapikey2018");
             var stations = client.Get<StationsResult>(restRequest);
 
             return View(stations.Data);
