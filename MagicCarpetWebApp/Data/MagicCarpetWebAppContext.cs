@@ -17,5 +17,6 @@ namespace MagicCarpetWebApp.Models
         public DbSet<MagicCarpetWebApp.Models.ConcertInfo> ConcertInfoes { get; set; }
         public DbSet<ConcertLocation> ConcertLocations { get; set; }
         public DbSet<MagicCarpetWebApp.Models.Reservation> Reservations { get; set; }
+        public DbSet<MagicCarpetWebApp.Models.Payment> Payments { get; set; }
     }
 }

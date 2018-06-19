@@ -7,6 +7,7 @@ namespace MagicCarpetWebApp.Models
 {
     public class Payment
     {
+        public Guid Id { get; set; }
         public Guid ReservationId { get; set; }
         public double Price { get; set; }
     }
