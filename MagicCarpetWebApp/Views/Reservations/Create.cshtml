@@ -40,6 +40,12 @@
                     <p>Amount of people needed to make this happen</p>
                     <strong style="font-size: 20px; margin: 5px 0;" id="seats_still_needed"></strong>
                 </div><br/>
+
+                <div style="text-align: center;">
+                    <p>The amount due is</p>
+                    <strong style="font-size: 20px; margin: 5px 0;" id="amount_money"></strong>
+                </div><br/>
+
                 <div class="form-group" style="text-align: center;">
                     <input type="submit" value="I'm in" class="btn btn-default"/>
                 </div>
@@ -53,6 +59,7 @@
         $("#get_extra_info").click(function () {
             var concertId = $("#ConcertId option:selected").val();
             var destination = $("#Destination option:selected").val();
+            var amountP = "5";
             $.ajax({  
                 type: "GET",  
                 url: "api/Calculate/GetStillNeededSeats?concertId=" + concertId + "&destination=" +  destination,  
@@ -65,13 +72,38 @@
                 }, //End of AJAX Success function  
   
                 failure: function (data) {  
-                    alert(data.responseText);  
+                   // alert(data.responseText);  
                 }, //End of AJAX failure function  
                 error: function (data) {  
-                    alert(data.responseText);  
+                   // alert(data.responseText);  
                 } //End of AJAX error function  
   
             });         
+
+            $.ajax({  
+                type: "GET",  
+                url: "api/Calculate/GetPrice?concertId=" + concertId + "&destination=" + destination + "&amount=" + amountP,  
+                contentType: "application/json; charset=utf-8",  
+                dataType: "json",  
+                success: function (data) {
+                    //$("#seats_still_needed").text(data);
+                    //$("#extra_info").show();
+                    if (data !== undefined) {
+                        $("#amount_money").text((data / 100).toLocaleString('nl-NL', {style: 'currency', currency:'EUR'}));
+                        console.log(data); 
+                        }
+                }, //End of AJAX Success function  
+  
+                failure: function (data) {  
+                    //alert(data.responseText);  
+                }, //End of AJAX failure function  
+                error: function (data) {  
+                   // alert(data.responseText);  
+                } //End of AJAX error function  
+  
+            });         
+
+
         });
 
         $("#ConcertId").change(function () {
@@ -94,10 +126,10 @@
                 }, //End of AJAX Success function  
   
                 failure: function (data) {  
-                    alert(data.responseText);  
+                    //alert(data.responseText);  
                 }, //End of AJAX failure function  
                 error: function (data) {  
-                    alert(data.responseText);  
+                   // alert(data.responseText);  
                 } //End of AJAX error function  
   
             });         

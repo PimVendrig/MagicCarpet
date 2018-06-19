@@ -46,6 +46,8 @@ namespace MagicCarpetWebApp.Controllers
             return seatsTaken > requiredSeats ? 0 : requiredSeats - seatsTaken;
         }
 
+        [Route("GetPrice")]
+        [HttpGet]
         public int GetPrice(Guid concertId, string destination, int amount)
         {
             string start = _context.ConcertInfoes
