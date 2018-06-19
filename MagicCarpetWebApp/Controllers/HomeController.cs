@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MagicCarpetWebApp.Models;
+using MagicCarpetWebApp.Services;
 using RestSharp;
 
 namespace MagicCarpetWebApp.Controllers
@@ -28,17 +29,6 @@ namespace MagicCarpetWebApp.Controllers
             ViewData["Message"] = "Your contact page.";
 
             return View();
-        }
-
-        public IActionResult NsApi()
-        {
-
-            var client = new RestClient("https://api-access.ns-mlab.nl/");
-            var restRequest = new RestRequest("/reisinfo/api/v2/stations");
-            restRequest.AddHeader("x-api-key", "hackatrainapikey2018");
-            var stations = client.Get<StationsResult>(restRequest);
-
-            return View(stations.Data);
         }
 
 

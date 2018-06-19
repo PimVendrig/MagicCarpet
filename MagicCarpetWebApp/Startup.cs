@@ -48,7 +48,7 @@ namespace MagicCarpetWebApp
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Reservations}/{action=Create}/{id?}");
             });
 
             PrepareDatabase(app);
@@ -73,11 +73,15 @@ namespace MagicCarpetWebApp
                     context.ConcertLocations.Add(afasLive);
                     context.ConcertLocations.Add(gelredome);
 
-                    context.ConcertInfoes.Add(new ConcertInfo { Name = "Nicki Minaj", Location = ziggoDome, Date = new DateTime(2018, 08, 1, 22, 0, 0) });
-                    context.ConcertInfoes.Add(new ConcertInfo { Name = "Nicki Minaj", Location = ziggoDome, Date = new DateTime(2018, 08, 2, 22, 0, 0) });
-                    context.ConcertInfoes.Add(new ConcertInfo { Name = "Justin Bieber", Location = afasLive, Date = new DateTime(2018, 08, 3, 22, 0, 0) });
-                    context.ConcertInfoes.Add(new ConcertInfo { Name = "Justin Bieber", Location = afasLive, Date = new DateTime(2018, 08, 4, 22, 0, 0) });
-                    context.ConcertInfoes.Add(new ConcertInfo { Name = "Snow Patrol", Location = gelredome, Date = new DateTime(2018, 08, 5, 22, 0, 0) });
+                    var nickiAug1Concert = new ConcertInfo { Name = "Nicki Minaj (Aug 1st)", Location = ziggoDome, Date = new DateTime(2018, 08, 1, 22, 0, 0) };
+                    context.ConcertInfoes.Add(nickiAug1Concert);
+                    context.ConcertInfoes.Add(new ConcertInfo { Name = "Nicki Minaj (Aug 2nd)", Location = ziggoDome, Date = new DateTime(2018, 08, 2, 22, 0, 0) });
+                    context.ConcertInfoes.Add(new ConcertInfo { Name = "Justin Bieber (Aug 3rd)", Location = afasLive, Date = new DateTime(2018, 08, 3, 22, 0, 0) });
+                    context.ConcertInfoes.Add(new ConcertInfo { Name = "Justin Bieber (Aug 4th)", Location = afasLive, Date = new DateTime(2018, 08, 4, 22, 0, 0) });
+                    context.ConcertInfoes.Add(new ConcertInfo { Name = "Snow Patrol (Aug 5th)", Location = gelredome, Date = new DateTime(2018, 08, 5, 22, 0, 0) });
+
+                    context.Reservations.Add(new Reservation { Concert = nickiAug1Concert, Destination = "HGV", Amount = 6, EmailAddress = "somebody@example.com", Agrees = true, PaymentDetails = "{\"id\": \"493900A6-64AD-41CA-B569-A3364BBA62CA\",\"success\": true}" });
+                    context.Reservations.Add(new Reservation { Concert = nickiAug1Concert, Destination = "HGV", Amount = 2, EmailAddress = "somebodyelse@example.com", Agrees = true, PaymentDetails = "{\"id\": \"493900A6-64AD-41CA-B569-A3364BBA62CB\",\"success\": true}" });
 
                     context.SaveChanges();
                 }

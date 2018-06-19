@@ -11,9 +11,10 @@ using System;
 namespace MagicCarpetWebApp.Migrations
 {
     [DbContext(typeof(MagicCarpetWebAppContext))]
-    partial class MagicCarpetWebAppContextModelSnapshot : ModelSnapshot
+    [Migration("20180619051154_Reservations")]
+    partial class Reservations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
