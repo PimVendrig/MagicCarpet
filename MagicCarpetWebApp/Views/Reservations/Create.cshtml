@@ -59,7 +59,8 @@
         $("#get_extra_info").click(function () {
             var concertId = $("#ConcertId option:selected").val();
             var destination = $("#Destination option:selected").val();
-            var amountP = "5";
+            var amountP = $("#Amount").val();//"5"; 
+            //alert(amountP);
             $.ajax({  
                 type: "GET",  
                 url: "api/Calculate/GetStillNeededSeats?concertId=" + concertId + "&destination=" +  destination,  
